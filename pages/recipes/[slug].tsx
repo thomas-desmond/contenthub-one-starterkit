@@ -12,7 +12,7 @@ import { generateHTML } from "@tiptap/html";
 import Image from 'next/image'
 import HeroBanner from "../../components/Homepage/hero-banner";
 
-const Renderer = require("prosemirror-to-html-js").Renderer;
+// const Renderer = require("prosemirror-to-html-js").Renderer;
 
 
 type Params = {
@@ -49,8 +49,6 @@ type Params = {
 
 const Post = ({recipe,homepage}: Props) => {
     
-    const output = generateHTML(recipe?.preparationDescriptionRt,[richTextProfile]);
-
     return (
         <div className={stylesHp.container}>
             <Head>
@@ -59,9 +57,6 @@ const Post = ({recipe,homepage}: Props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={stylesHp.main}>
-                <HeaderComponent 
-                    allHeaders={homepage.header}
-                />
                 <HeroBanner 
                   heroImageUrl={recipe?.ImageList?.results[0].fileUrl}
                   altText=''
@@ -76,11 +71,8 @@ const Post = ({recipe,homepage}: Props) => {
                       <strong>Ingredients:</strong> {recipe?.Ingredients}
                     </p>
 
-                    <p dangerouslySetInnerHTML={{ __html: output }} />
                 </div>
-                <FooterComponent
-                    allFooters={homepage.footer}
-                />
+
                 
             </main>
         </div>
