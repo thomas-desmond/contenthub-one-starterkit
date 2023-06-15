@@ -34,13 +34,15 @@ const Homepage = ({ allHomepage, homepage }: Props) => {
     if (event.target.files) {
       const output = await exifr.parse(event.target.files[0]);
       console.log(output)
-      
-      const data = await fetch(
-        `https://api.geocodify.com/v2/reverse?api_key=${process.env.GEOCODE_API_KEY}&lat=${output.latitude}&lng=${output.longitude}`
-      );
-      const locationData = await data.json();
-    }
 
+      const data = await fetch(`/api/proxy?lat=${output.latitude}&lng=${output.longitude}`);
+
+      // const data = await fetch(
+      //   `https://api.geocodify.com/v2/reverse?api_key=${process.env.GEOCODE_API_KEY}&lat=${output.latitude}&lng=${output.longitude}`
+      // );
+      const locationData = await data.json();
+      console.log(locationData);
+    }
   }
 
   return (
